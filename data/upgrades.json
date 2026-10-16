@@ -1,0 +1,12 @@
+[
+  { "id": "slime_qty", "name": "スライム分裂", "desc": "召喚ごとのスライム生成数 +1", "rarity": "common", "max_stacks": 3, "effects": [{ "stat": "slime_quantity", "add": 1 }] },
+  { "id": "goblin_aspd", "name": "ゴブリンの狂速", "desc": "ゴブリン攻撃速度 +20%", "rarity": "common", "max_stacks": 5, "effects": [{ "stat": "goblin_attack_speed", "add": 0.2 }] },
+  { "id": "skel_def", "name": "骨の鎧", "desc": "スケルトン防御力 +20%", "rarity": "common", "max_stacks": 5, "effects": [{ "stat": "skeleton_defense", "add": 0.2 }] },
+  { "id": "max_mana", "name": "魔力の器", "desc": "最大魔力 +25", "rarity": "common", "max_stacks": 5, "effects": [{ "stat": "max_mana", "add": 25 }] },
+  { "id": "mana_regen", "name": "魔力の泉", "desc": "魔力回復 +2/秒", "rarity": "common", "max_stacks": 5, "effects": [{ "stat": "mana_regen", "add": 2 }] },
+  { "id": "cmd_radius", "name": "号令の声", "desc": "指揮半径 +30%", "rarity": "common", "max_stacks": 3, "effects": [{ "stat": "command_radius", "add": 0.3 }] },
+  { "id": "ally_hp", "name": "魔王の加護", "desc": "全味方の最大HP +15%", "rarity": "common", "max_stacks": 5, "effects": [{ "stat": "ally_hp", "add": 0.15 }] },
+  { "id": "swarm_evo", "name": "群体進化", "desc": "スライムが同時に20体以上いると移動速度 +20%（減ると解除）", "rarity": "rare", "max_stacks": 1, "effects": [{ "flag": "swarm_evo" }] },
+  { "id": "necro", "name": "死霊再生", "desc": "スケルトンが倒れた時、20%で復活（1体につき一度）", "rarity": "rare", "max_stacks": 1, "effects": [{ "flag": "necro" }] },
+  { "id": "squad", "name": "小隊連携", "desc": "ゴブリン5体以上かつスケルトン5体以上でゴブリン被ダメージ −10%", "rarity": "rare", "max_stacks": 1, "effects": [{ "flag": "squad" }] }
+]

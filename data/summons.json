@@ -1,0 +1,5 @@
+[
+  { "unit_id": "slime", "mana_cost": 15, "cooldown": 2, "quantity": 1, "cast_range": 340 },
+  { "unit_id": "goblin", "mana_cost": 25, "cooldown": 4, "quantity": 1, "cast_range": 340 },
+  { "unit_id": "skeleton", "mana_cost": 30, "cooldown": 5, "quantity": 1, "cast_range": 340 }
+]

@@ -1,0 +1,10 @@
+[
+  { "id": "slime", "name": "スライム", "faction": "ally", "max_hp": 28, "move_speed": 155, "attack": 5, "attack_range": 12, "attack_interval": 0.55, "target_policy": "swarm", "radius": 9, "color": "#6fd27a", "mass": 1, "tags": ["beast", "swarm"] },
+  { "id": "goblin", "name": "ゴブリン", "faction": "ally", "max_hp": 34, "move_speed": 235, "attack": 11, "attack_range": 14, "attack_interval": 0.5, "target_policy": "threat", "radius": 10, "color": "#f09a3e", "mass": 1, "tags": ["demi", "striker"] },
+  { "id": "skeleton", "name": "スケルトン", "faction": "ally", "max_hp": 120, "move_speed": 125, "attack": 6, "attack_range": 16, "attack_interval": 0.9, "target_policy": "guard", "radius": 13, "color": "#e8e2cf", "mass": 5, "tags": ["undead", "guard"] },
+  { "id": "swordsman", "name": "戦士", "faction": "enemy", "max_hp": 32, "move_speed": 90, "attack": 7, "attack_range": 14, "attack_interval": 1.0, "ai": "melee", "radius": 12, "color": "#5b8cff", "mass": 2, "soul": 1 },
+  { "id": "archer", "name": "弓兵", "faction": "enemy", "max_hp": 26, "move_speed": 85, "attack": 7, "attack_range": 290, "attack_interval": 1.7, "ai": "ranged", "radius": 11, "color": "#3ec7c0", "mass": 1.5, "soul": 1 },
+  { "id": "priest", "name": "僧侶", "faction": "enemy", "max_hp": 34, "move_speed": 80, "attack": 0, "heal": 12, "attack_range": 170, "attack_interval": 2.0, "ai": "support", "radius": 11, "color": "#ffd65a", "mass": 1.5, "soul": 2 },
+  { "id": "hero_boss", "name": "勇者", "faction": "enemy", "max_hp": 1500, "move_speed": 104, "attack": 22, "attack_range": 20, "attack_interval": 1.1, "ai": "boss", "radius": 24, "color": "#ff4d5e", "mass": 40, "soul": 25,
+    "aoe": { "damage": 30, "radius": 135, "interval": 4.5, "windup": 0.7 } }
+]

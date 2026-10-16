@@ -1,0 +1,8 @@
+[
+  { "enemy_id": "swordsman", "start_sec": 0, "end_sec": 600, "spawn_interval": 2.4, "group": 1, "group_per_min": 0.35, "rate_per_min": 0.1 },
+  { "enemy_id": "archer", "start_sec": 180, "end_sec": 600, "spawn_interval": 5.0, "group": 1, "group_per_min": 0.2, "rate_per_min": 0.08 },
+  { "enemy_id": "priest", "start_sec": 360, "end_sec": 600, "spawn_interval": 9.0, "group": 1, "group_per_min": 0, "rate_per_min": 0.04 },
+  { "enemy_id": "swordsman", "start_sec": 600, "end_sec": 1000000000, "spawn_interval": 5.0, "group": 2, "group_per_min": 0, "rate_per_min": 0 },
+  { "enemy_id": "archer", "start_sec": 600, "end_sec": 1000000000, "spawn_interval": 9.0, "group": 1, "group_per_min": 0, "rate_per_min": 0 },
+  { "enemy_id": "hero_boss", "start_sec": 600, "once": true }
+]

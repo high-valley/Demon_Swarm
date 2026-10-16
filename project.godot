@@ -1,0 +1,47 @@
+; Engine configuration file.
+; Godot 4.7 で作成。エディタで開くとこのファイルは自動で整形されることがある。
+
+config_version=5
+
+[application]
+
+config/name="Demon Swarm"
+config/description="魔王は攻撃できない。逃げて、召喚して、命令する。"
+config/version="0.1.0"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Settings="*res://scripts/autoload/settings.gd"
+Platform="*res://scripts/autoload/platform.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/window_width_override=1600
+window/size/window_height_override=900
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=4
+
+[gui]
+
+theme/custom_font="res://assets/fonts/NotoSansJP-Subset.otf"
+
+[input_devices]
+
+pointing/emulate_mouse_from_touch=true
+pointing/emulate_touch_from_mouse=false
+
+[physics]
+
+common/physics_ticks_per_second=60
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.07, 0.06, 0.1, 1)
