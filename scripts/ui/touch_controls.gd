@@ -7,6 +7,7 @@ extends Control
 
 const LONG_PRESS_SEC := 0.42
 const JOY_RADIUS := 60.0
+const DEAD_ZONE := 6.0
 
 var router: InputRouter
 var sim_ref: Callable          # 現在の Simulation を返す（ダッシュCD表示用）
@@ -45,9 +46,8 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventScreenDrag:
 		if not joy.is_empty() and joy.index == event.index:
 			joy.pos = event.position
-			var v: Vector2 = joy.pos - joy.origin
-			router.touch_move = v / JOY_RADIUS if v.length() > 8.0 else Vector2.ZERO
-			router.touch_move = router.touch_move.limit_length(1.0)
+			joy.origin = follow_origin(joy.origin, joy.pos)
+			router.touch_move = stick_vector(joy.origin, joy.pos)
 		elif not press.is_empty() and press.index == event.index:
 			press.pos = event.position
 		get_viewport().set_input_as_handled()
@@ -139,3 +139,20 @@ func _button(btn: Dictionary, lit: bool, cd: float) -> void:
 	draw_arc(p, r, 0, TAU, 48, Color("#e7a93b") if lit else Color("#3c3250"), 3.0)
 	var fs := maxi(18, int(r * 0.45))
 	draw_string(font, p + Vector2(-r, fs * 0.36), btn.label, HORIZONTAL_ALIGNMENT_CENTER, r * 2.0, fs, Color("#ece6f3"))
+
+
+## 指が円の外へ出たら、中心を指の方へ引っぱる（追従スティック）。
+## 中心が固定だと、大きくスワイプした後に向きを変えるには指をその分戻す必要があり、操作が遅れて感じる。
+static func follow_origin(origin: Vector2, pos: Vector2) -> Vector2:
+	var v := pos - origin
+	if v.length() > JOY_RADIUS:
+		return pos - v.normalized() * JOY_RADIUS
+	return origin
+
+
+## 移動入力（長さ0〜1）。中心から少し動かしただけで反応する
+static func stick_vector(origin: Vector2, pos: Vector2) -> Vector2:
+	var v := pos - origin
+	if v.length() <= DEAD_ZONE:
+		return Vector2.ZERO
+	return (v / JOY_RADIUS).limit_length(1.0)
