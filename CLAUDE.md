@@ -3,6 +3,7 @@
 このファイルは Claude Code が最初に読む。作業前に必ず目を通すこと。
 
 ## プロジェクト
+- **呼び名**: オーナーとの会話ではカタカナの略称を使う。デモスワ = Demon Swarm、ライデ = Life Debt、デスレガ = Death Legacy（このリポジトリは「デモスワ」）。
 - 逆 Vampire Survivors 型の召喚アクション・ローグライト。魔王は攻撃せず、逃げながら魔物を召喚・指揮する。
 - 仕様書: `docs/specs/01_Demon_Summoner_GDD.md`（MVP要件）、`docs/specs/03_Claude_Code_Architecture_Prompt.md`
 - 配信方針: GitHub Pages（Web版・スマホでも確認）→ 固まったら同じコードを Electron で包んで Windows 版を作り Steam へ。
