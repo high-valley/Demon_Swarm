@@ -1,4 +1,6 @@
-# アーキテクチャ（縦切りスライス v0.1）
+# アーキテクチャ（縦切りスライス / TypeScript 版）
+
+> 2026-10 に Godot から TypeScript へ移行（ADR-010）。図の名前はファイル名に読み替える: Main → `src/main.ts`、Simulation → `src/sim/simulation.ts`、DataLoader → `src/data/dataLoader.ts`、BattleView / Hud → `src/view/`、Menus → `src/ui/menus.ts`（HTML）。
 
 ## 全体像
 

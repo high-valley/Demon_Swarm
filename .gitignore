@@ -1,7 +1,5 @@
-# Godot
-.godot/
-/build/
+node_modules
+/dist/
 *.tmp
-# OS
 .DS_Store
 Thumbs.db

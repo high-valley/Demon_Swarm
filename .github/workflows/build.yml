@@ -1,9 +1,9 @@
 name: Build & Deploy
 
 # main に push すると:
-#   1. 単体テスト（ヘッドレス）
+#   1. 型チェック・単体テスト（失敗したら公開しない）
 #   2. Web版を書き出して GitHub Pages に公開
-#   3. Windows版を書き出して Actions の成果物（Artifacts）に保存 → Steam 提出前の動作確認用
+# Steam 版（Windows）は、遊びが固まってから Electron で同じ dist/ を包んで作る予定（docs/decisions.md ADR 012）
 on:
   push:
     branches: [main]
@@ -19,76 +19,38 @@ concurrency:
   group: build-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  GODOT_VERSION: "4.7.2"
-  GODOT_RELEASE: "4.7.2-stable"
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Cache Godot
-        id: cache-godot
-        uses: actions/cache@v4
+      - uses: actions/setup-node@v4
         with:
-          path: ~/godot
-          key: godot-${{ env.GODOT_RELEASE }}-web-win
+          node-version: "24"
 
-      - name: Download Godot and export templates
-        if: steps.cache-godot.outputs.cache-hit != 'true'
-        run: |
-          mkdir -p ~/godot/templates && cd ~/godot
-          base="https://github.com/godotengine/godot/releases/download/${GODOT_RELEASE}"
-          curl -fsSL -o godot.zip "$base/Godot_v${GODOT_RELEASE}_linux.x86_64.zip"
-          unzip -q godot.zip && mv "Godot_v${GODOT_RELEASE}_linux.x86_64" godot && rm godot.zip
-          curl -fsSL -o tpl.tpz "$base/Godot_v${GODOT_RELEASE}_export_templates.tpz"
-          unzip -q -j tpl.tpz \
-            templates/version.txt \
-            templates/web_nothreads_release.zip templates/web_nothreads_debug.zip \
-            templates/windows_release_x86_64.exe templates/windows_debug_x86_64.exe \
-            -d templates
-          rm tpl.tpz
+      - name: Install
+        run: npm install --no-audit --no-fund
 
-      - name: Install export templates
-        run: |
-          dest=~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-          mkdir -p "$dest" && cp ~/godot/templates/* "$dest/"
-
-      - name: Import project
-        run: ~/godot/godot --headless --path . --import
+      - name: Type check
+        run: npm run typecheck
 
       - name: Unit tests
-        run: ~/godot/godot --headless --path . -s res://tests/run_tests.gd
+        run: npm test
 
-      - name: Export Web (single-threaded, works on GitHub Pages)
+      - name: Build Web
         run: |
-          mkdir -p build/web
-          ~/godot/godot --headless --path . --export-release "Web" build/web/index.html
-          test -f build/web/index.wasm
-
-      - name: Export Windows
-        run: |
-          mkdir -p build/windows
-          ~/godot/godot --headless --path . --export-release "Windows Desktop" build/windows/DemonSwarm.exe
-          test -f build/windows/DemonSwarm.exe
-
-      - name: Upload Windows build
-        uses: actions/upload-artifact@v4
-        with:
-          name: DemonSwarm-windows-${{ github.sha }}
-          path: build/windows
-          retention-days: 14
+          npm run build
+          test -f dist/index.html && test -f dist/main.js
 
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build/web
+          path: dist
 
   deploy:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     environment:
