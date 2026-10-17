@@ -11,7 +11,7 @@
 
 ## 現在地（2026-10 時点）
 - M0 縦切りスライス完了。進捗とMVP受け入れ条件の対応表は `docs/milestones.md`。
-- 公開URL: https://high-valley.github.io/demon_swarm/
+- 公開URL: https://high-valley.github.io/Demon_Swarm/
 - 経緯: 単一HTMLの試作 → Godot 版 → **iPhone のブラウザで重く遊べなかったため TypeScript（Canvas 2D）へ移行**（ADR-010）。Godot 版は `godot-legacy` ブランチ。
 - 次は M1（手触り調整）。数値調整は `data/*.json` だけで行う。
 

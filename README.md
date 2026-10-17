@@ -3,7 +3,7 @@
 魔王は攻撃できない。逃げて、召喚して、命令する。
 **逆 Vampire Survivors 型の召喚アクション・ローグライト**の最小縦切りスライス（TypeScript / Canvas 2D）。
 
-- 遊ぶ（Web版・スマホ可）: https://high-valley.github.io/demon_swarm/
+- 遊ぶ（Web版・スマホ可）: https://high-valley.github.io/Demon_Swarm/
 - 仕様: GDD v1.0（`docs/specs/01_Demon_Summoner_GDD.md`）の MVP をもとに実装
 - 配信方針: GitHub Pages で確認 → 固まったら同じコードを Electron で包んで Windows 版を作り Steam へ（ADR-010）
 - 旧 Godot 版は `godot-legacy` ブランチに保存（iPhone のブラウザで重かったため移行）
